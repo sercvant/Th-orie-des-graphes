@@ -43,18 +43,17 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 g = nx.Graph([(0,1),(0,2),(1,3),(2,4),(2,1),(3,5),(5,1)])
-
+g1 = nx.Graph([(0,1),(0,2),(1,3),(2,1),(3,5),(5,1)])
 #1 
 def parcours_en_profondeur(G, s):
-    pere = ["0" for x in range(len(G.nodes))]
+    marc = {}
+    pere = {}
     p = []
     p.append(s)
-    marc = []
-    while len(p) > 1:
-        u = sommet(p)
-        depile(p)
+    while p:
+        u = p.pop()
         if u not in marc:
-            marc.append(u)
+            marc[u] = True
             print(u)
             for v in list(G.neighbors(u)):
                 if v not in marc:
@@ -63,8 +62,8 @@ def parcours_en_profondeur(G, s):
     print(pere)
     print(p)
 
-parcours_en_profondeur(g, 2)
-nx.draw(g, with_labels=True)
+parcours_en_profondeur(g1, 2)
+nx.draw(g1, with_labels=True)
 plt.show()
 
 
